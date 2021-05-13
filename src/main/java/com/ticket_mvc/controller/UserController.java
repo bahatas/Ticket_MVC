@@ -18,7 +18,7 @@ public class UserController {
 
 
 
-        return "create";
+        return "/user/create";
 
 
 
