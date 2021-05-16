@@ -4,10 +4,12 @@ import com.sun.org.apache.bcel.internal.generic.ARETURN;
 import com.sun.org.apache.bcel.internal.generic.BREAKPOINT;
 import com.ticket_mvc.dto.UserDTO;
 import com.ticket_mvc.service.UserService;
+import org.springframework.stereotype.Service;
 
 import java.util.List;
 import java.util.stream.Collectors;
 
+@Service
 public class UserServiceImpl extends AbstractMapService<UserDTO,String> implements UserService {
     @Override
     public List<UserDTO> findAll() {

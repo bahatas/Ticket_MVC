@@ -16,11 +16,19 @@ import org.springframework.web.bind.annotation.RequestMapping;
 @RequestMapping("/user")
 public class UserController {
 
+    @Autowired
+    UserService userService;
+
+    @Autowired
+    RoleService roleService;
 
     @GetMapping("/create")
     public String createUser(Model model){
 
         model.addAttribute("user",new UserDTO());
+        model.addAttribute("roles",roleService.findAll());
+        model.addAttribute("users",userService.findAll());
+
 
 
 
