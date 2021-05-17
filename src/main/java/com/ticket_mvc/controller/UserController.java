@@ -42,5 +42,10 @@ public class UserController {
     }
 
 
+    @GetMapping("/update/{}")
+    public String update(){
+
+        return "/user/update";
+    }
 
 }
