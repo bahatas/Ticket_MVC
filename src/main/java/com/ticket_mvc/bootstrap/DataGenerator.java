@@ -1,13 +1,18 @@
 package com.ticket_mvc.bootstrap;
 
+import com.ticket_mvc.dto.ProjectDTO;
 import com.ticket_mvc.dto.RoleDTO;
 import com.ticket_mvc.dto.UserDTO;
+import com.ticket_mvc.service.ProjectService;
 import com.ticket_mvc.service.RoleService;
 import com.ticket_mvc.service.UserService;
 import com.ticket_mvc.utils.Gender;
-import org.springframework.beans.factory.annotation.Autowired;
+
+import com.ticket_mvc.utils.Status;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.stereotype.Component;
+
+import java.time.LocalDate;
 
 @Component
 public class DataGenerator implements CommandLineRunner {
@@ -16,10 +21,13 @@ public class DataGenerator implements CommandLineRunner {
 
     RoleService roleService;
     UserService userService;
+    ProjectService projectService;
 
-    public DataGenerator(RoleService roleService, UserService userService) {
+
+    public DataGenerator(RoleService roleService, UserService userService, ProjectService projectService) {
         this.roleService = roleService;
         this.userService = userService;
+        this.projectService=projectService;
     }
 
 
@@ -66,5 +74,18 @@ public class DataGenerator implements CommandLineRunner {
         userService.save(user6);
         userService.save(user7);
         userService.save(user8);
+
+        ProjectDTO project1 = new ProjectDTO("Spring MVC","PR001",user1, LocalDate.now(),LocalDate.now().plusDays(25),"Creating Controllers", Status.OPEN);
+        ProjectDTO project2 = new ProjectDTO("Spring ORM","PR002",user2, LocalDate.now(),LocalDate.now().plusDays(10),"Creating Database", Status.IN_PROGRESS);
+        ProjectDTO project3 = new ProjectDTO("Spring Container","PR003",user1, LocalDate.now(),LocalDate.now().plusDays(32),"Creating Container", Status.UAT_TEST);
+
+        projectService.save(project1);
+        projectService.save(project2);
+        projectService.save(project3);
+
+
+
+
+
     }
 }
