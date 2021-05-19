@@ -12,29 +12,29 @@ public class ProjectServiceImpl extends AbstractMapService<ProjectDTO,String> im
     }
 
     @Override
-    public void deleteById(String id) {
+    public void deleteById(String projectCode) {  // project code burda uniq i=olan aslinda
 
-        super.deleteById(id);
+        super.deleteById(projectCode);
     }
 
     @Override
-    public void delete(ProjectDTO object) {
+    public void delete(ProjectDTO projectDTO) {
 
-        super.delete(object);
+        super.delete(projectDTO);
     }
 
     @Override
-    public ProjectDTO findById(String id) {
-        return super.findbyId(id);
+    public ProjectDTO findById(String projectCode) {
+        return super.findbyId(projectCode);
     }
 
     @Override
-    public ProjectDTO save(ProjectDTO object) {
-        return super.save(object.getProjectCode(),object);
+    public ProjectDTO save(ProjectDTO projectDTO) {
+        return super.save(projectDTO.getProjectCode(),projectDTO);
     }
 
     @Override
-    public void update(ProjectDTO object) {
-        super.update(object.getProjectCode(),object);
+    public void update(ProjectDTO projectDTO) {
+        super.update(projectDTO.getProjectCode(),projectDTO);
     }
 }
