@@ -39,6 +39,12 @@ public class UserController {
     public String insertUser(UserDTO user,Model model){
 
         userService.save(user);
+//        model.addAttribute("user",new UserDTO());
+//        model.addAttribute("roles",roleService.findAll());
+//        model.addAttribute("users",userService.findAll());
+        //<< these lines are not need so that user/create one also has same lines. >>
+
+
         return "redirect:/user/create";
     }
 
@@ -56,8 +62,20 @@ public class UserController {
     @PostMapping("/delete/{username}")
     public String updateUser(@PathVariable("username") String username, UserDTO user,Model model){
         userService.update(user);
+
+
+//        model.addAttribute("user",new UserDTO());
+//        model.addAttribute("roles",roleService.findAll());
+//        model.addAttribute("users",userService.findAll());
+        //<< these lines are not need so that user/create one also has same lines. >>
+
         return "redirect:/user/create";
 
     }
-   // @GetMapping("/delete/{username}")
+    @GetMapping("/delete/{username}")
+   public String deleteUser(@PathVariable("username") String username){
+
+        userService.deleteById(username);
+        return "redirect:/user/create";
+    }
 }
