@@ -2,6 +2,7 @@ package com.ticket_mvc.implementation;
 
 import com.ticket_mvc.dto.ProjectDTO;
 import com.ticket_mvc.service.ProjectService;
+import com.ticket_mvc.utils.Status;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -38,5 +39,12 @@ public class ProjectServiceImpl extends AbstractMapService<ProjectDTO,String> im
     @Override
     public void update(ProjectDTO projectDTO) {
         super.update(projectDTO.getProjectCode(),projectDTO);
+    }
+
+
+    @Override
+    public void complete(ProjectDTO projectDTO) {
+        super.findbyId(projectDTO.getProjectCode()).setProjectStatus(Status.COMPLETE);
+        super.save(projectDTO.getProjectCode(),projectDTO);
     }
 }
