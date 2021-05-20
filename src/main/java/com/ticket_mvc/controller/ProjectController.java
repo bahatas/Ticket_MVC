@@ -63,7 +63,7 @@ public class ProjectController {
         return "project/update";
     }
     @PostMapping("/update/{projectCode}")
-    public String updatebyId(@PathVariable("projectCode") ProjectDTO projectDTO){
+    public String updateproject(@PathVariable("projectCode") ProjectDTO projectDTO){
         projectService.update(projectDTO);
 
         return "redirect:/project/create";
