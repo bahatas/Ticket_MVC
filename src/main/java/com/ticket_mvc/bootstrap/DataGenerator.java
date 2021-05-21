@@ -2,9 +2,11 @@ package com.ticket_mvc.bootstrap;
 
 import com.ticket_mvc.dto.ProjectDTO;
 import com.ticket_mvc.dto.RoleDTO;
+import com.ticket_mvc.dto.TaskDTO;
 import com.ticket_mvc.dto.UserDTO;
 import com.ticket_mvc.service.ProjectService;
 import com.ticket_mvc.service.RoleService;
+import com.ticket_mvc.service.TaskService;
 import com.ticket_mvc.service.UserService;
 import com.ticket_mvc.utils.Gender;
 
@@ -22,12 +24,14 @@ public class DataGenerator implements CommandLineRunner {
     RoleService roleService;
     UserService userService;
     ProjectService projectService;
+    TaskService taskService;
 
 
-    public DataGenerator(RoleService roleService, UserService userService, ProjectService projectService) {
+    public DataGenerator(RoleService roleService, UserService userService, ProjectService projectService, TaskService taskService) {
         this.roleService = roleService;
         this.userService = userService;
         this.projectService=projectService;
+        this.taskService=taskService;
     }
 
 
@@ -83,6 +87,14 @@ public class DataGenerator implements CommandLineRunner {
         projectService.save(project2);
         projectService.save(project3);
 
+        TaskDTO task1 = new TaskDTO(project1,user8,"Controller","Request Mapping",Status.IN_PROGRESS,LocalDate.now().minusDays(4));
+        TaskDTO task2 = new TaskDTO(project3,user3,"Configuration","Database Connnection",Status.COMPLETE,LocalDate.now().minusDays(12));
+        TaskDTO task3 = new TaskDTO(project3,user6,"Mapping","One-To-Many",Status.IN_PROGRESS,LocalDate.now().minusDays(8));
+        TaskDTO task4 = new TaskDTO(project2,user7,"Dependency Injection","Autowired",Status.UAT_TEST,LocalDate.now().minusDays(20));
+        taskService.save(task1);
+        taskService.save(task2);
+        taskService.save(task3);
+        taskService.save(task4);
 
 
 
