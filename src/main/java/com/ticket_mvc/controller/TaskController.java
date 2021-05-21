@@ -9,6 +9,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
@@ -34,13 +35,13 @@ public class TaskController {
         model.addAttribute("task", taskDTO);
         model.addAttribute("projects", projectService.findAll());
         model.addAttribute("employees", userService.findEmployees());
-        model.addAttribute("tasks",taskService.findAll() );
+        model.addAttribute("tasks", taskService.findAll());
 
 
         return "/task/create";
     }
 
-    @PostMapping("/create")
+    @PostMapping("/create/")
     public String task(Model model, TaskDTO taskDTO) {
 
         taskDTO.setTaskStatus(Status.OPEN);
@@ -51,6 +52,33 @@ public class TaskController {
 
         return "redirect:/task/create";
     }
+
+    @GetMapping("/delete/{id}")
+    public String delete(@PathVariable("id") Long id) {
+
+        taskService.deleteById(id);
+
+        return "redirect:/task/create";
+    }
+
+    @GetMapping("/update/{id}")
+    public String edit(@PathVariable("id") Long id , Model model) {
+
+        model.addAttribute("task",taskService.findById(id));
+        model.addAttribute("projects",projectService.findAll());
+        model.addAttribute("employee",userService.findEmployees());
+        model.addAttribute("tasks",taskService.findAll());
+        return "task/update";
+    }
+
+    @PostMapping("/update/{id}")
+    public String update(TaskDTO taskDTO) {
+
+        taskService.update(taskDTO);
+
+        return "task/create";
+    }
+
 
 
 }
