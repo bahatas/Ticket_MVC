@@ -33,7 +33,7 @@ public class TaskController {
 
         model.addAttribute("task", taskDTO);
         model.addAttribute("projects", projectService.findAll());
-        model.addAttribute("employees  ", userService.findEmployees());
+        model.addAttribute("employees", userService.findEmployees());
         model.addAttribute("tasks",taskService.findAll() );
 
 
