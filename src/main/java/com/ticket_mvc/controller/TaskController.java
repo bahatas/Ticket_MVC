@@ -41,7 +41,7 @@ public class TaskController {
         return "/task/create";
     }
 
-    @PostMapping("/create/")
+    @PostMapping("/create")
     public String task(Model model, TaskDTO taskDTO) {
 
         taskDTO.setTaskStatus(Status.OPEN);
@@ -76,7 +76,7 @@ public class TaskController {
 
         taskService.update(taskDTO);
 
-        return "task/create";
+        return "redirect:/task/create";
     }
 
 
